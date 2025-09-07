@@ -40,20 +40,28 @@ namespace BookingService.IntegrationTests.Controllers
         [Fact]
         public async Task CreateBooking_Should_Return_409_When_SlotIsFull()
         {
-            var booking = new BookingModel
+            string[] names = { "Sai", "Naveen", "Kiran", "Lal" };
+            
+
+           foreach (var name in names) 
+           {
+                var booking = new BookingModel
+                {
+                    BookingTime = "10:00",
+                    Name = name
+                };
+
+                var response = await _client.PostAsJsonAsync("/api/booking/create", booking);
+                response.StatusCode.Should().Be(HttpStatusCode.OK);
+           }
+
+            // 5th call to the CreateBooking should fail
+            var conflictBooking = new BookingModel
             {
                 BookingTime = "10:00",
                 Name = "Test User"
             };
-
-            for (int i = 0; i < 4; i++)
-            {
-                var response = await _client.PostAsJsonAsync("/api/booking/create", booking);
-                response.StatusCode.Should().Be(HttpStatusCode.OK);
-            }
-
-            // 5th call to the CreateBooking should fail
-            var conflictResponse = await _client.PostAsJsonAsync("/api/booking/create", booking);
+            var conflictResponse = await _client.PostAsJsonAsync("/api/booking/create", conflictBooking);
 
             conflictResponse.StatusCode.Should().Be(HttpStatusCode.Conflict);
         }

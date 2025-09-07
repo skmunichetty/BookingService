@@ -29,20 +29,20 @@ namespace BookingService.Tests.Services
                                 { 
                                     new Booking()
                                     {
-                                        BookingId = Guid.Parse("c5cb97fd-1fda-45e9-849d-d97bdfaa9fbf"),
-                                        Name = "test",
+                                        BookingId = Guid.Parse("7c9bb30a-6f48-4f0e-9f8c-6b5fcd5b7c3e"),
+                                        Name = "sai test",
                                         BookingTime =  new TimeOnly(9, 0)
                                     }, 
                                     new Booking()
                                     {
-                                        BookingId = Guid.Parse("c5cb97fd-1fda-45e9-849d-d97bdfaa9fbg"),
-                                        Name = "test",
+                                        BookingId = Guid.Parse("a2f1e5d7-9b8c-4d3c-91e4-0e7e3cf9a452"),
+                                        Name = "kiran test",
                                         BookingTime =  new TimeOnly(9, 10)
                                     },
                                     new Booking()
                                     {
-                                        BookingId = Guid.Parse("c5cb97fd-1fda-45e9-849d-d97bdfaa9fbh"),
-                                        Name = "test",
+                                        BookingId = Guid.Parse("c5cb97fd-1fda-45e9-849d-d97bdfaa9fba"),
+                                        Name = "naveen test",
                                         BookingTime =  new TimeOnly(9, 10)
                                     },
                                 }); 
