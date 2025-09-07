@@ -27,7 +27,10 @@ namespace BookingService.Application.Services
 
                 if (bookings.Count() >= 4)
                     throw new BookingConflictException("Booking slots are full. Choose a different time.");
-                                
+
+                if (bookings.Any(b => b.Name.Equals(model.Name, StringComparison.OrdinalIgnoreCase)))
+                    throw new BookingConflictException($"A booking already exists for {model.Name} at this time.");
+
                 var bookingEntity = MapToEntity(model);
                 var bookingId = _bookingRepository.Add(bookingEntity);
 

@@ -6,11 +6,20 @@ export let options = {
   duration: "10s",  
 };
 
+
+function getName() {
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const suffix = Array.from({ length: 3 }, () =>
+    letters[Math.floor(Math.random() * letters.length)]
+  ).join("");
+  return `User ${suffix}`;
+}
+
 export default function () {
   const url = "https://localhost:7018/api/booking/create";
   const payload = JSON.stringify({
     bookingTime: "09:30",
-    name: `Test User`
+    name: getName()
   });
 
   const params = {
@@ -21,7 +30,7 @@ export default function () {
 
   let res = http.post(url, payload, params);
 
-  console.log(`VU ${__VU} -> Status: ${res.status}, Body: ${res.body}`);
+  console.log(`Name: ${JSON.parse(payload).name} -> Status: ${res.status}, Body: ${res.body}`);
 
   check(res, {
     "status is 200": (r) => r.status === 200,
